@@ -36,7 +36,7 @@ Members can choose to study scheduling strategies, model dependencies, examine d
 
 | Partners | Shared concerns |
 |---|---|
-| architecture and ml-compiler | Connect intended operation semantics and software expectations to a realizable execution model. |
+| architecture and software | Connect intended operation semantics and software expectations to a realizable execution model. |
 | rtl-compute and rtl-memory | Agree on operation requests, resource availability, responses and the assumptions required for progress. |
 | soc and verification | Clarify the host-to-execution boundary and collaborate on observations that demonstrate correct ordering, progress and recovery. |
 

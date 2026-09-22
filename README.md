@@ -1,5 +1,9 @@
 # Execution control and scheduling
 
+## Start here: current investigation packet
+
+Read the [starting guide](docs/START-HERE.md) for the current diagram, source evidence, parallel investigations and first useful outputs.
+
 Make accelerator execution understandable and dependable by coordinating operations, resources and progress over time. The team explores how commands become ordered activity across compute and memory, including dependencies, stalls, completion and recovery.
 
 ## Read the charter
