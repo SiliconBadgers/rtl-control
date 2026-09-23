@@ -1,49 +1,35 @@
-# Top-Level Control starting material
+# Top-Level Control: current work
 
-September 22, 2026. Initial investigations for team discussion; no personal assignments or deadlines.
+Design command receipt, validation, dispatch, coordination and completion. This team works in rtl-control for controller internals and architecture for the shared register/descriptor contract.
 
-## Shared starting points
+## Assignment
 
-- [Editable architecture diagram](https://github.com/SiliconBadgers/architecture/blob/main/docs/accelerator-diagram.md) and [candidate boundaries](https://github.com/SiliconBadgers/architecture/blob/main/contracts/accelerator-boundaries.md).
-- [Workload cases and source shapes](https://github.com/SiliconBadgers/architecture/blob/main/docs/workload-cases.md).
-- [Measured llama.cpp report](https://github.com/SiliconBadgers/software/blob/main/experiments/llama-cpp/2026-09-22/REPORT.md) and [reproduction procedure](https://github.com/SiliconBadgers/software/blob/main/experiments/llama-cpp/2026-09-22/README.md).
-- [Parallel team investigations](https://github.com/SiliconBadgers/planning/blob/main/docs/team-start.md).
+- [Controller block diagram and command flow](https://github.com/SiliconBadgers/rtl-control/issues/2)
+- [Shared MMIO/descriptor proposal in architecture](https://github.com/SiliconBadgers/architecture/issues/3)
 
-The diagram and engine split are proposals. Start from available shapes and
-reference cases now; use explicit parameters or stubs where decisions remain
-open. Software's broader profiling study is not a prerequisite. Preserve the
-source revision, assumptions, commands and limits of each result. Members and
-leads can choose a different investigation that resolves a relevant uncertainty.
+1. Expand the central diagram into a Mermaid or editable draw.io controller diagram with block responsibilities and interfaces.
+2. Walk through a representative command from acceptance through compute/memory completion and status reporting. Explain readiness, stalls/backpressure, outstanding work, errors and reset/quiescence.
+3. Review the two slide maps and trace llama.cpp operations, metadata and synchronization. Propose the actual MMIO map and command descriptor in architecture#3; explain field changes and command examples.
+4. Keep exact unit details and latencies explicit as assumptions. Exchange interfaces with Memory and each Compute team and give Verification concrete behavior to test.
 
+## Starting evidence
 
-## First useful output
+- [Central diagram](https://github.com/SiliconBadgers/architecture/blob/main/docs/accelerator-diagram.md)
+- [Recorded Software profiling package](https://github.com/SiliconBadgers/software/tree/main/experiments/llama-cpp/2026-09-22)
+- [Slide register maps](https://github.com/SiliconBadgers/architecture/blob/codex/register-map-baseline/docs/register-maps.md) (baseline proposed in [architecture PR #2](https://github.com/SiliconBadgers/architecture/pull/2))
 
-A small dependency/scheduler model comparing one command in flight with grouped
-commands or limited overlap. Use variable compute and transfer latencies now;
-refine them as team measurements arrive. Include a timeline and an explanation
-of command granularity, ownership and completion/error boundaries.
+## Artifact locations
 
-## Procedure
+| Location | What belongs here |
+|---|---|
+| [docs/controller/](../docs/controller/README.md) | Controller diagram, interfaces, state/control flow and command walkthroughs for rtl-control#2. Keep editable source, plus SVG/PNG preview for draw.io. Link the architecture register proposal instead of copying the maps. |
 
-1. Walk a projection/activation/projection chain and an attention or recurrent-state chain from the saved workload evidence.
-2. Model operation dependencies, buffer ownership, dispatch overhead and outstanding transfers. Distinguish arithmetic done from externally visible output.
-3. Compare coarse commands with fine commands using identical operation work and adjustable latencies. Account for packing, transfer and dispatch costs.
-4. Add backpressure and injected errors. Check that new issue stops and accepted traffic drains before resources are released.
-5. Sketch the local/top-level split with Compute and the host-visible split with SoC and Software.
+## What runs today
 
-The source diagram's normal route is IDLE, FETCH, VALIDATE, DISPATCH, EXECUTE,
-DRAIN, COMPLETE. Its fuller proposal also names RESET, FAULT DRAIN, FAULT HOLD
-and HALTED; ACK releases the terminal command, and reset requires quiescence.
-These are behavior to evaluate, not an adopted FSM encoding or final interface.
+This repo has design scaffolding, not a runnable accelerator controller. The one-command slide proposal is a starting point to evaluate. This work does not design a CPU instruction decoder.
 
-## First checks
+These folders organize the work; they do not complete the issues. Use the
+existing evidence now and publish useful intermediate results. Arrange a team
+meeting this week to divide the work and agree on next steps.
 
-Exercise rejection before execution, long engine stalls, delayed write responses,
-duplicate/late completion, fault while a transfer is outstanding, terminal
-acknowledgment and reset requests before/after quiescence. State liveness
-assumptions explicitly: unbounded backpressure cannot promise a bounded finish.
-
-Put the model, cases and trace/timeline in `experiments/<study>/`. A useful result
-identifies where dispatch or ownership serializes work and what overlap is
-actually safe. `make test` currently reports an unimplemented scaffold; complete
-engine RTL is not required to begin the model.
+Follow [CONTRIBUTING.md](../CONTRIBUTING.md) before editing or committing.
