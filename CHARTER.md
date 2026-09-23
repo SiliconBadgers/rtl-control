@@ -1,5 +1,9 @@
 # Execution control and scheduling: team charter
 
+Current assignments are listed in [docs/START-HERE.md](docs/START-HERE.md) and
+the linked issues. The broader directions below provide context; they do not
+replace those deliverables.
+
 ## Purpose
 
 Make accelerator execution understandable and dependable by coordinating operations, resources and progress over time. The team explores how commands become ordered activity across compute and memory, including dependencies, stalls, completion and recovery.
@@ -36,7 +40,7 @@ Members can choose to study scheduling strategies, model dependencies, examine d
 
 | Partners | Shared concerns |
 |---|---|
-| architecture and ml-compiler | Connect intended operation semantics and software expectations to a realizable execution model. |
+| architecture and software | Connect intended operation semantics and software expectations to a realizable execution model. |
 | rtl-compute and rtl-memory | Agree on operation requests, resource availability, responses and the assumptions required for progress. |
 | soc and verification | Clarify the host-to-execution boundary and collaborate on observations that demonstrate correct ordering, progress and recovery. |
 
