@@ -16,7 +16,7 @@ Design command receipt, validation, dispatch, coordination and completion. This 
 
 - [Central diagram](https://github.com/SiliconBadgers/architecture/blob/main/docs/accelerator-diagram.md)
 - [Recorded Software profiling package](https://github.com/SiliconBadgers/software/tree/main/experiments/llama-cpp/2026-09-22)
-- [Slide register maps](https://github.com/SiliconBadgers/architecture/blob/codex/register-map-baseline/docs/register-maps.md) (baseline proposed in [architecture PR #2](https://github.com/SiliconBadgers/architecture/pull/2))
+- [Slide register maps](https://github.com/SiliconBadgers/architecture/blob/main/docs/register-maps.md) (preserved slide baseline from [architecture PR #2](https://github.com/SiliconBadgers/architecture/pull/2))
 
 ## Artifact locations
 
